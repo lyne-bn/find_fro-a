@@ -12,7 +12,7 @@ const SignInForm = () => {
 
     // Basic validation
     if (!email || !password) {
-      setError('Please fill in both fields.');
+      setError('veuillez remplire tous le champs');
       return;
     }
 
@@ -28,7 +28,7 @@ const SignInForm = () => {
   return (
     <div className="flex min-h-screen">
       {/* Left Container - Image */}
-      <div className="w-1/2 h-FULL flex-1">
+      <div className="h-FULL">
         <img
           src={signinpic}
           alt="signinpic"
@@ -37,7 +37,7 @@ const SignInForm = () => {
       </div>
 
       {/* Right Container - Form */}
-      <div className="flex-1 w-1/2 p-8 flex  items-center bg-white">
+      <div className="h-FULL p-8 flex  items-center bg-white">
         <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
           <h2 className="text-2xl font-semibold text-center mb-6">Connectez-vous à votre compte</h2>
           <h4 className="text-2xl font-regular text-center mb-6">Veuillez entrer vos informations de connexion ci-dessous.</h4>
@@ -59,7 +59,7 @@ const SignInForm = () => {
             </div>
 
             <div className="mb-4 flex-column">
-              <div className='flex-1'><label htmlFor="password" className="block text-gray-700 mb-2 text-blue">Mot De Passe *</label></div>
+              <div className='flex-1'><label htmlFor="password" className="block text-gray-700 mb-2">Mot De Passe *</label></div>
               <div className='flex-1'><input
                 type="password"
                 id="password"
@@ -73,7 +73,7 @@ const SignInForm = () => {
 
             <button
               type="submit"
-              className="px-8 py-6 m-10 bg-blue text-white font-medium"
+              className="px-8 py-6 m-10 bg-logo-blue text-white font-medium"
             >
               connecter
             </button>
