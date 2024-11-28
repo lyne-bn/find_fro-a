@@ -14,6 +14,8 @@ export default {
       'logo-blue': '#020B56', 
       'logo-green': '#1AE3D9',
       'logo-white':' #EAF6FF',
+      'white':'#FFFFFF',
+      'red':'#DC1515',
     },
   },
   plugins: [],
