@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import signinpic from '../assets/signin.png';
+import React, { useEffect } from 'react';
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  useEffect(() => {
+    // Disable scrolling on the body element
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto'; // Restore default scrolling
+    };
+  }, []);
 
   // Handle form submission
   const handleSubmit = (e) => {
