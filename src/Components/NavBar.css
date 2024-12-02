@@ -1,0 +1,128 @@
+.Nav {
+    background-image: url('../Assets/background.svg');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 12vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4vw;
+    align-items: center;
+}
+
+a {
+    all: unset;
+}
+
+.titles {
+    display: flex;
+    gap: 4vw;
+}
+
+.Nav p {
+    color: white;
+}
+
+.Nav p:hover{
+    color: #1AE3D9;
+    cursor: pointer;
+}
+
+.boutton {
+    padding: 1vh 2vw;
+    color: white;
+    border-radius: 30px;
+    border: 1px solid white;
+    background-color: transparent;
+}
+
+.boutton:hover {
+    background-color: #1AE3D9;
+    border-color: #1AE3D9;
+}
+
+.buttons {
+    display: flex;
+    gap: 2vw;
+}
+
+.Navresp {
+    display: none;
+}
+
+@media screen and (max-width: 800px){
+    .Nav {
+        display: none;
+    }
+
+    .Navresp {
+        display: block;
+        background-image: url('../Assets/background.svg');
+        background-size: cover; 
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 100vw;
+        height: 15vh;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 10vw;
+        align-items: center;
+    }
+
+    .more {
+        height: 5vh;
+        width: 5vh;
+    }
+
+    .menu-icon {
+        all:unset;    
+    }
+
+    .more-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5vh;
+        position: relative;
+    }
+
+    .popup {
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+        background-color: #020B56;
+        padding: 4vh 4vw;
+        border-radius: 20px;
+        width: fit-content;
+        height: fit-content;
+        position: absolute;  /* Makes the popup appear below the button */
+        top: 15%;  /* Places the popup right below the button */
+        left: 8%;
+        z-index: 50;
+    }
+
+    .titles {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: flex-start;
+    }
+
+    .buttons{
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+    }
+
+    
+    .popup p {
+        color: white;
+    }
+
+    .popup p:hover{
+        color: #1AE3D9;
+        cursor: pointer;
+    }
+}
+

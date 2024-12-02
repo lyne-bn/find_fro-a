@@ -1,0 +1,13 @@
+.categories {
+    display: flex;
+    flex-direction: column;
+    padding: 8vh 0;
+    gap: 4vh;
+    align-self: flex-start;
+}
+
+.categories p {
+    color: #020B56;
+    font-weight: 900;
+    font-size: 1.2rem;
+}
