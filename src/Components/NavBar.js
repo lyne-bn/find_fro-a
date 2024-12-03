@@ -7,8 +7,15 @@ import "./NavBar.css"
 // Ensure that your modal is properly attached to the app element
 ReactModal.setAppElement('#root');
 
-function NavBar({ user }) {
+function NavBar({ home }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [user, setUser] = useState(false)
+  const [id, setId] = useState(0)
+  const token = localStorage.getItem("token");
+  if(token) {
+    setUser(true)
+    setId(token)
+  }
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -16,7 +23,7 @@ function NavBar({ user }) {
 
   return (
     <>
-      <div className="Nav">
+      <div className={home ? "NavHome" : "Nav"}>
         <img alt="logo" src={logo} />
         <div className="titles">
           <a href="/"><p>Accueil</p></a>
@@ -26,10 +33,10 @@ function NavBar({ user }) {
         </div>
         <div>
           {user ? (
-            <button>Profil</button>
+            <a href={`/profil/${id}`}><button className="boutton">Profil</button></a>
           ) : (
             <div className="buttons">
-              <a href="/connection"><button className="boutton">Connection</button></a>
+              <a href="/connexion"><button className="boutton">Connection</button></a>
               <a href='/inscription'><button className="boutton">S'inscrire</button></a>
             </div>
           )}
@@ -56,10 +63,10 @@ function NavBar({ user }) {
           </div>
           <div>
             {user ? (
-              <button>Profil</button>
+              <a href={`/profil/${id}`}><button className="boutton">Profil</button></a>
             ) : (
               <div className="buttons">
-                <a href="/connection"><button className="boutton">Connection</button></a>
+                <a href="/connexion"><button className="boutton">Connection</button></a>
                 <a href='/inscription'><button className="boutton">S'inscrire</button></a>
               </div>
             )}

@@ -2,15 +2,24 @@ import React, { useState } from "react";
 import { FaSearch } from 'react-icons/fa';
 
 
-function Searchbar({ data, onFilter }) {
+function Searchbar({ data, onFilter, freelancer }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearch = (query) => {
     setSearchQuery(query);
-    const filteredProjects = data.filter((project) =>
-      project.titre.toLowerCase().includes(query.toLowerCase())
-    );
-    onFilter(filteredProjects);
+    if (freelancer) {
+      const filteredProjects = data.filter((project) =>
+        project.nom.toLowerCase().includes(query.toLowerCase()) ||
+        project.prenom.toLowerCase().includes(query.toLowerCase())
+      );
+      onFilter(filteredProjects);
+    }else {
+      const filteredProjects = data.filter((project) =>
+        project.titre.toLowerCase().includes(query.toLowerCase())
+      );
+      onFilter(filteredProjects);
+    }
+    
   };
 
   return (

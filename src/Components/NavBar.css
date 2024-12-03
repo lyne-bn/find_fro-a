@@ -10,6 +10,14 @@
     padding: 0 4vw;
     align-items: center;
 }
+.NavHome {
+    width: 100vw;
+    height: 12vh;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 4vw;
+    align-items: center;
+}
 
 a {
     all: unset;
@@ -25,6 +33,15 @@ a {
 }
 
 .Nav p:hover{
+    color: #1AE3D9;
+    cursor: pointer;
+}
+
+.NavHome p {
+    color: white;
+}
+
+.NavHome p:hover{
     color: #1AE3D9;
     cursor: pointer;
 }
@@ -53,6 +70,10 @@ a {
 
 @media screen and (max-width: 800px){
     .Nav {
+        display: none;
+    }
+
+    .NavHome {
         display: none;
     }
 
