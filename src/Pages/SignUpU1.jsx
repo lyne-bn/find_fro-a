@@ -3,7 +3,7 @@ import signuppic from '../Assets/signup.png';
 import logo from '../Assets/logo_without_text.png';
 import { Link } from 'react-router-dom';
 
-const SignUpF1 = () => {
+const SignUpU1 = () => {
   const [name, setname] = useState('');
   const [prenom, setprenom] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
@@ -63,13 +63,7 @@ const SignUpF1 = () => {
               2
             </span>
             <div className="h-0.5 flex-1 bg-gray-300"></div>
-            <span className="w-8 h-8 flex items-center justify-center bg-gray-300 text-gray-600 rounded-full">
-              3
-            </span>
-            <div className="h-0.5 flex-1 bg-gray-300"></div>
-            <span className="w-8 h-8 flex items-center justify-center bg-gray-300 text-gray-600 rounded-full">
-              4
-            </span>
+           
           </div>
         </div>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
@@ -172,7 +166,7 @@ const SignUpF1 = () => {
 
             {/* Submit Button */}
             <div className="mt-6 flex justify-end">
-              <Link to="/inscriptionF2">
+            <Link to="/inscription2">
                 <button
                   type="submit"
                   className="p-3 m-10 bg-[#1AE3D9] text-[#FAFAFF] font-medium rounded-lg hover:border-2 hover:border-[#1AE3D9] hover:bg-[#FAFAFF] hover:text-[#1AE3D9]"
@@ -188,5 +182,5 @@ const SignUpF1 = () => {
   );
 };
 
-export default SignUpF1;
+export default SignUpU1;
 
