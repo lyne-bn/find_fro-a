@@ -117,7 +117,7 @@ function Projects() {
     },
   ]);
 
-  const [filteredProjects, setFilteredProjects] = useState(allProjects);
+  const [filteredProjects, setFilteredProjects] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -131,6 +131,7 @@ function Projects() {
         }
         const data = await response.json();
         setAllProjects(data);
+        setFilteredProjects(data);
       } catch (err) {
         setError(err.message);
       }

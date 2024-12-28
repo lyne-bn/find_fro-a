@@ -207,8 +207,8 @@ const FreelancerProfile = () => {
             </button>
           </div>
           <div className='grid grid-cols-1 gap-4'>
-            {freelancer.projects.map((project, index) => (
-              <div key={index} className='flex items-start gap-4'>
+            {freelancer.projects.map((project) => (
+              <div key={project.id} className='flex items-start gap-4'>
                 <img
                   src={project.image}
                   alt={project.title}
