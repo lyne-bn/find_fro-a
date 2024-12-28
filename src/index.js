@@ -8,7 +8,7 @@ import FreelancerProfile from './Pages/FreelancerProfile';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <FreelancerProfile />
+    <App />
   </React.StrictMode>
 );
 
