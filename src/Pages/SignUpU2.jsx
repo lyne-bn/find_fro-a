@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import signuppic from '../Assets/signup.png';
 import logo from '../Assets/logo_without_text.png';
-
+import { Link } from 'react-router-dom';
 const SignUpU2 = () => {
   const [carte, setCarte] = useState('');
   const [nom, setNom] = useState('');
@@ -178,12 +178,12 @@ const SignUpU2 = () => {
 
             {/* Submit Button */}
             <div className="mt-6 flex justify-end">
-            <a href="/"><button
+            <Link to="/"><button
                 type="submit"
                 className="p-3 m-10 bg-[#1AE3D9] text-[#FAFAFF] font-medium rounded-lg hover:border-2 hover:border-[#1AE3D9] hover:bg-[#FAFAFF] hover:text-[#1AE3D9]"
               >
                 S'inscrire
-            </button></a>
+            </button></Link>
             </div>
           </form>
         </div>
