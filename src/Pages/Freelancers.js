@@ -251,7 +251,7 @@ function Freelancers() {
                 </div>
 
                 <a
-                  href={`/freelancers/${freelancer._id}`}
+                  href={`/Freelancers/${freelancer.id}`}
                   className='self-end cursor-pointer'
                 >
                   <div className='flex gap-[1vw]'>

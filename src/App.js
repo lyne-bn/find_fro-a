@@ -12,6 +12,7 @@ import SignUpU2 from './Pages/SignUpU2';
 import SignUpF2 from './Pages/SignUpF2';
 import SignUpF3 from './Pages/SignUpF3';
 import SignUpF4 from './Pages/SignUpF4';
+import FreelancerProfile from './Pages/FreelancerProfile';
 
 function App() {
   return (
@@ -19,9 +20,13 @@ function App() {
       <Router>
         <Routes>
           <Route path='/projets' element={<Projects />} />
-          <Route path='/projets/:id' element={<ProjectDetails />} />
-          <Route path='/Freelancers' element={<Freelancers />} />
-          <Route path='/Freelancers/:id' element={<FreelancerDetails />} />
+          <Route path='/project/:id' element={<ProjectDetails />} />
+          <Route path='/freelancers' element={<Freelancers />} />
+          <Route path='/freelancers/:id' element={<FreelancerDetails />} />
+          <Route
+            path='/FreelancerProfile/:id'
+            element={<FreelancerProfile />}
+          />
           <Route path='/inscription' element={<SignUpU1 />} />
           <Route path='/inscription2' element={<SignUpU2 />} />
           <Route path='/inscriptionF1' element={<SignUpF1 />} />

@@ -172,7 +172,7 @@ function Projects() {
                 <p className='text-sm text-[#020B56]'>{project.duree}</p>
               </div>
               <a
-                href={`/project/${project._id}`}
+                href={`/project/${project.id}`}
                 className='self-end cursor-pointer'
               >
                 <div className='flex gap-[1vw]'>
