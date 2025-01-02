@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import signuppic from '../Assets/signup.png';
 import logo from '../Assets/logo_without_text.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 const SignUpF3 = () => {
   const [categorie] = useState('');
   const [GitHub, setGitHub] = useState('');
@@ -9,6 +10,7 @@ const SignUpF3 = () => {
   const [Behance, setBehance] = useState('');
   const [skills, setskills] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
   
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -17,7 +19,7 @@ const SignUpF3 = () => {
   };
   
   // Handle form submission
-     const handleSubmit = (e) => {
+     const handleSubmit = async(e) => {
      e.preventDefault();
 
     
@@ -29,7 +31,36 @@ const SignUpF3 = () => {
     // Clear the error after successful submission
     setError('');
 
-    // Proceed with further actions (e.g., authentication)
+    const payload = {
+      categorie,
+      GitHub,
+      LinkedIn,
+      Behance,
+      skills,
+    };
+
+    try {
+      // Send POST request to the backend
+      const response = await fetch('http://127.0.0.1:8000//freelancers/signup/step3/{freelancer_id}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        console.log('Form submitted successfully!');
+        alert('Détails enregistrés avec succès!');
+        navigate('/inscriptionF4'); // Redirect to the next page after successful submission
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'Une erreur est survenue');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Erreur de connexion au serveur');
+    }
   };
 
   return (
@@ -147,14 +178,14 @@ const SignUpF3 = () => {
 
             {/* Submit Button */}
             <div className="mt-6 flex justify-end">
-              <Link to="/inscriptionF4">
+              
                 <button
                   type="submit"
                   className="p-3 m-10 bg-[#1AE3D9] text-[#FAFAFF] font-medium rounded-lg hover:border-2 hover:border-[#1AE3D9] hover:bg-[#FAFAFF] hover:text-[#1AE3D9]"
                 >
                   Suivant
                 </button>
-              </Link>
+              
             </div>
           </form>
         </div>

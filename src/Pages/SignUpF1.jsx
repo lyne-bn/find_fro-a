@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import signuppic from '../Assets/signup.png';
 import logo from '../Assets/logo_without_text.png';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate} from 'react-router-dom';
 
 const SignUpF1 = () => {
   const [name, setname] = useState('');
@@ -12,9 +12,9 @@ const SignUpF1 = () => {
   const [error, setError] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false); // State for password visibility
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false); // State for confirm password visibility
-
+   const navigate = useNavigate();
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
 
     // Basic validation
@@ -34,8 +34,35 @@ const SignUpF1 = () => {
 
     // Clear the error after successful submission
     setError('');
+    const userData = {
+      name: name,
+      prenom: prenom,
+      email: email,
+      password: password,
+      confirmPassword: confirmPassword,
+   };
 
-    // Proceed with further actions (e.g., authentication)
+    try {
+      const response = await fetch("http://127.0.0.1:8000/freelancers/signup/step1", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(userData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+          console.log("Success:", data);
+          navigate('/inscriptionF2');
+      } else {
+          setError(data.detail || "Une erreur est survenue");
+      }
+   } catch (error) {
+      console.error("Erreur lors de l'inscription:", error);
+      setError("Une erreur est survenue lors de la connexion au serveur");
+   }
   };
 
   return (
@@ -172,14 +199,14 @@ const SignUpF1 = () => {
 
             {/* Submit Button */}
             <div className="mt-6 flex justify-end">
-              <Link to="/inscriptionF2">
+              
                 <button
                   type="submit"
                   className="p-3 m-10 bg-[#1AE3D9] text-[#FAFAFF] font-medium rounded-lg hover:border-2 hover:border-[#1AE3D9] hover:bg-[#FAFAFF] hover:text-[#1AE3D9]"
                 >
                   Suivant
                 </button>
-              </Link>
+              
             </div>
           </form>
         </div>

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import signuppic from '../Assets/signup.png';
 import logo from '../Assets/logo_without_text.png';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 const SignUpF2 = () => {
   const [niveau] = useState('');
   const [profession] = useState('');
   const [description, setdescription] = useState('');
-  
+   const navigate = useNavigate();
   const [error, setError] = useState('');
 
   const [selectedOption, setSelectedOption] = useState("");
@@ -17,7 +17,7 @@ const SignUpF2 = () => {
   
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic validation
@@ -33,7 +33,40 @@ const SignUpF2 = () => {
     // Clear the error after successful submission
     setError('');
 
-    // Proceed with further actions (e.g., authentication)
+    try {
+      // Construct the payload
+      const payload = {
+        profession: selectedOption, // Selected profession
+        niveau: selectedOption,    // Selected experience level
+        description,
+      };
+  
+      // Send data to the backend
+      const response = await fetch('step2:http://127.0.0.1:8000/freelancers/signup/step2/{freelancer_id}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+  
+      // Handle the response
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Success:', data);
+        navigate('/inscriptionF3');
+  
+        // Clear error and proceed to next step
+        setError('');
+        alert('Détails enregistrés avec succès!');
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'Une erreur est survenue');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Erreur de connexion au serveur');
+    }
   };
 
   return (
@@ -132,14 +165,14 @@ const SignUpF2 = () => {
 
             {/* Submit Button */}
             <div className="mt-6 flex justify-end">
-              <Link to="/inscriptionF3">
+              
                 <button
                   type="submit"
                   className="p-3 m-10 bg-[#1AE3D9] text-[#FAFAFF] font-medium rounded-lg hover:border-2 hover:border-[#1AE3D9] hover:bg-[#FAFAFF] hover:text-[#1AE3D9]"
                 >
                   Suivant
                 </button>
-              </Link>
+              
             </div>
           </form>
         </div>

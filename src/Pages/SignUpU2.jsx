@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import signuppic from '../Assets/signup.png';
 import logo from '../Assets/logo_without_text.png';
-
+import { Link,useNavigate } from 'react-router-dom';
 const SignUpU2 = () => {
   const [carte, setCarte] = useState('');
   const [nom, setNom] = useState('');
@@ -10,9 +10,9 @@ const SignUpU2 = () => {
   const [day, setDay] = useState('');
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
-
+   const navigate = useNavigate();
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic validation
@@ -26,6 +26,41 @@ const SignUpU2 = () => {
 
     // Clear the error after successful submission
     setError('');
+    try {
+      // Construct the payload
+      const payload = {
+        carte,
+        nom,
+        code,
+        expirationDate: `${year}-${month}-${day}`, // Format date
+      };
+  
+      // Send data to the backend
+      const response = await fetch('http://127.0.0.1:8000//freelancers/signup/step4/{freelancer_id}', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+  
+      // Handle the response
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Success:', data);
+        navigate('/');
+  
+        // Navigate to the next page or show success message
+        setError(''); // Clear errors
+        alert('Inscription réussie!');
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || 'Une erreur est survenue');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setError('Erreur de connexion au serveur');
+    }
   };
 
   return (
@@ -178,12 +213,12 @@ const SignUpU2 = () => {
 
             {/* Submit Button */}
             <div className="mt-6 flex justify-end">
-            <a href="/"><button
+            <button
                 type="submit"
                 className="p-3 m-10 bg-[#1AE3D9] text-[#FAFAFF] font-medium rounded-lg hover:border-2 hover:border-[#1AE3D9] hover:bg-[#FAFAFF] hover:text-[#1AE3D9]"
               >
                 S'inscrire
-            </button></a>
+            </button>
             </div>
           </form>
         </div>
