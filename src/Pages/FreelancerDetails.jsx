@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import NavBar from '../Components/NavBar';
 import Footer from '../Components/Footer';
 import { FaGithub, FaLinkedin, FaDribbble, FaBehance } from 'react-icons/fa';
+import { Mail } from 'lucide-react';
 
 function FreelancerDetails() {
   const { id } = useParams();
@@ -43,26 +44,57 @@ function FreelancerDetails() {
     <div>
       <NavBar />
       <div className='bg-[#EAF6FF] min-h-screen flex justify-center items-center'>
-        <div className='flex flex-col items-center space-y-4'>
-          {/* About Section */}
-          <div className='bg-white shadow-lg rounded-lg overflow-hidden w-[18rem] h-auto border border-[#020B56] p-4 mb-4'>
-            <h3 className='font-bold text-[#020B56] text-lg mb-2 border-b border-[#020B56]'>
-              A propos de moi :
+        <div className='flex flex-col items-center space-y-6'>
+          {/* Profile Section */}
+          <div className='bg-white shadow-lg rounded-lg overflow-hidden w-[22rem] h-auto border border-[#020B56] p-6'>
+            <h3 className='font-bold text-[#020B56] text-lg mb-4 border-b border-[#020B56]'>
+              Mon Profile:
             </h3>
             <p className='text-black text-sm mb-2'>
-              Profession(s) :
+              <span className='font-bold'>Nom: </span>
+              {freelancer.nom}
+            </p>
+            <p className='text-black text-sm mb-2'>
+              <span className='font-bold'>Prénom: </span>
+              {freelancer.prenom}
+            </p>
+            <p className='text-black text-sm mb-4'>
+              <span className='font-bold'>Email: </span>
+              <span className='flex items-center mt-4'>
+                <Mail className='mr-2 text-[#020B56]' />
+                <a
+                  href={`mailto:${freelancer.email}`}
+                  className='text-[#000000]'
+                >
+                  {freelancer.email}
+                </a>
+              </span>
+            </p>
+            <p className='text-black text-sm'>
+              <span className='font-bold'>Description: </span>
+              {freelancer.description}
+            </p>
+          </div>
+
+          {/* About Section */}
+          <div className='bg-white shadow-lg rounded-lg overflow-hidden w-[22rem] h-auto border border-[#020B56] p-6'>
+            <h3 className='font-bold text-[#020B56] text-lg mb-4 border-b border-[#020B56]'>
+              A propos de moi :
+            </h3>
+            <p className='text-black text-sm mb-4'>
+              <span className='font-bold'>Profession(s): </span>
               <span className='bg-white border border-[#020B56] text-[#020B56] text-xs px-3 py-1 rounded-full ml-2'>
                 {freelancer.profession}
               </span>
             </p>
-            <p className='text-black text-sm mb-2'>
-              Level D’expérience :
+            <p className='text-black text-sm mb-4'>
+              <span className='font-bold'>Level D’expérience: </span>
               <span className='bg-white border border-[#020B56] text-[#020B56] text-xs px-3 py-1 rounded-full ml-2'>
                 {freelancer.level}
               </span>
             </p>
 
-            <p className='mt-4'>Portfolio Links :</p>
+            <p className='font-bold mt-4'>Portfolio Links:</p>
             <div className='mt-2 flex gap-4 justify-center'>
               {freelancer.Github && (
                 <a
