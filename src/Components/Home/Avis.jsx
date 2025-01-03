@@ -199,7 +199,20 @@ const Avis = () => {
   const [newReview, setNewReview] = useState({
     avis: '',
     role_auteur: '',
+    id_auteur: '',
   });
+
+  useEffect(() => {
+    const storedUserId = localStorage.getItem('id_user');
+    if (storedUserId) {
+      setNewReview((prevData) => ({
+        ...prevData,
+        id_auteur: storedUserId,
+      }));
+    } else {
+      console.error('User ID not found in localStorage');
+    }
+  }, []);
 
   useEffect(() => {
     const fetchAvis = async () => {
@@ -229,12 +242,16 @@ const Avis = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newReview),
-        credentials: 'include', // Inclure les cookies ou jetons pour l'utilisateur connecté
+        credentials: 'include', // Include cookies or tokens for the authenticated user
       });
       if (!response.ok) throw new Error("Erreur lors de l'ajout de l'avis");
       const addedReview = await response.json();
       setAvis([...avis, addedReview]);
-      setNewReview({ avis: '', role_auteur: '' });
+      setNewReview({
+        avis: '',
+        role_auteur: '',
+        id_auteur: newReview.id_auteur,
+      });
       setShowForm(false);
     } catch (err) {
       console.error(err.message);
@@ -344,7 +361,7 @@ const Avis = () => {
             {avis.map((review, index) => (
               <AvisCard
                 key={`right-${index}`}
-                name={review.id_auteur} // Remplacer si nécessaire par le nom
+                name={review.id_auteur}
                 role={review.role_auteur}
                 avis={review.avis}
               />
